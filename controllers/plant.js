@@ -9,15 +9,19 @@ exports.createPlant = (req, res, next) => {
     });
     plant.save()
     .then(function(result) {
-        console.log("objet : ", result);
+        console.log('objet crée : ', result);
         res.status(201).json({ message: 'Objet enregistré !'})
     })
         .catch(error => res.status(400).json({ error : 'erreur dans catch create plant '}));
 };
 
 exports.modifyPlant = (req, res, next) => {
-
-
+    Plant.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+        .then(function(result) {
+            console.log('object modifié', result);
+            res.status(200).json({ message: 'Objet modifié !'})
+        })
+        .catch(error => res.status(400).json({ error : 'erreur dans catch plant'}));
 };
 
 exports.deletePlant = (req, res, next) => {
@@ -27,8 +31,10 @@ exports.deletePlant = (req, res, next) => {
       .catch(error => res.status(400).json({ error }));
   };
 
-exports.getOnPlant = (req, res, next) => {
-    
+exports.getOnePlant = (req, res, next) => {
+    Plant.findOne({ _id: req.params.id })
+    .then(plant => res.status(200).json(plant))
+    .catch(error => res.status(404).json({ error }));
 }; 
 
 exports.getAllPlants = (req, res, next) => {
