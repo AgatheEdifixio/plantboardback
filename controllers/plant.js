@@ -14,6 +14,7 @@ exports.createPlant = (req, res, next) => {
 
 exports.modifyPlant = (req, res, next) => {
 
+
 };
 
 exports.deletePlant = (req, res, next) => {
@@ -25,5 +26,7 @@ exports.getOnPlant = (req, res, next) => {
 }; 
 
 exports.getAllPlants = (req, res, next) => {
-
+    Plant.find()
+    .then(plants => res.status(200).json(plants))
+    .catch(error => res.status(400).json({ error : 'dans getAllPlants'}))
 };
