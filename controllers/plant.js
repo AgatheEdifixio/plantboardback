@@ -1,13 +1,15 @@
 const Plant = require('../models/Plant');
 
 exports.createPlant = (req, res, next) => {
+    console.log("createPlant ctrl");
     delete req.body._id;
     const plant = new Plant({
-        ...req.body
+      name: req.body.name,
+      famille: req.body.famille
     });
     plant.save()
         .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ error : 'erreur dans catch create plant '}));
 };
 
 exports.modifyPlant = (req, res, next) => {
