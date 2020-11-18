@@ -7,6 +7,6 @@ const auth = require('../middleware/auth');
  router.get('/', plantCtrl.getAllPlants);
  router.get('/:id', plantCtrl.getOnePlant); 
  router.delete('/:id', plantCtrl.deletePlant);
-/* router.put('/:id', plantCtrl.modifyPlant); */
+ router.put('/:id', plantCtrl.modifyPlant); 
 
 module.exports = router;

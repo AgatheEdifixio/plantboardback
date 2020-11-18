@@ -16,6 +16,7 @@ exports.createPlant = (req, res, next) => {
 };
 
 exports.modifyPlant = (req, res, next) => {
+    console.log("backend modifyplant");
     Plant.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
         .then(function(result) {
             console.log('object modifié', result);
